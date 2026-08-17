@@ -40,22 +40,27 @@ div:has(> .user-box-wrapper) {
     justify-content: flex-start; 
 }
 
-/* 5. 말풍선 설정 */
+/* 5. 말풍선 공통 설정 */
 .chat-box {
     position: relative;
     flex: 0 1 auto !important; 
     max-width: 70%;
     padding: 7px 14px !important;
     border-radius: ${config.borderRadius}px !important;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
-    margin: 6px 12px 0 12px !important;
     font-size: 14.5px;
     line-height: 1.5;
 }
 
-/* 상대방 말풍선 */
+/* 4. 상대방(캐릭터) 말풍선 설정 */
 .char-chat-box {
     background-color: ${config.charBubbleColor} !important;
+    border-radius: ${config.borderRadius}px !important;
+    position: relative !important;
+    padding: 12px 16px !important;
+    max-width: 80% !important;
+    margin-left: 12px !important;
+}
+.char-chat-box, .char-chat-box risutextbox, .char-chat-box p, .char-chat-box span, .char-chat-box div {
     color: ${config.charTextColor} !important;
 }
 .char-chat-box::before {
@@ -68,9 +73,16 @@ div:has(> .user-box-wrapper) {
     border-color: transparent ${config.charBubbleColor} transparent transparent;
 }
 
-/* 유저 말풍선 */
+/* 5. 내(유저) 말풍선 설정 */
 .user-chat-box {
     background-color: ${config.userBubbleColor} !important;
+    border-radius: ${config.borderRadius}px !important;
+    position: relative !important;
+    padding: 12px 16px !important;
+    max-width: 80% !important;
+    margin-right: 12px !important;
+}
+.user-chat-box, .user-chat-box risutextbox, .user-chat-box p, .user-chat-box span, .user-chat-box div {
     color: ${config.userTextColor} !important;
 }
 .user-chat-box::before {
