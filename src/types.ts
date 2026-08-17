@@ -55,9 +55,9 @@ export const PRESETS: Preset[] = [
     name: '인스타 DM',
     config: {
       bgColor: '#ffffff',
-      charBubbleColor: '#A951F6',
+      charBubbleColor: '#EFEFEF',
       userBubbleColor: '#A951F6',
-      charTextColor: '#ffffff',
+      charTextColor: '#000000',
       userTextColor: '#ffffff',
       borderRadius: 18,
       avatarShape: 'circle',
@@ -111,6 +111,22 @@ export const PRESETS: Preset[] = [
       avatarShape: 'circle',
       hideUserAvatar: false,
       hideBubbleTail: false,
+      showShadow: false,
+    }
+  },
+  {
+    id: 'zeta',
+    name: '제타 (Zeta)',
+    config: {
+      bgColor: '#1c1c1e',
+      charBubbleColor: '#2c2c2e',
+      userBubbleColor: '#8b54ff',
+      charTextColor: '#ffffff',
+      userTextColor: '#ffffff',
+      borderRadius: 20,
+      avatarShape: 'circle',
+      hideUserAvatar: true,
+      hideBubbleTail: true,
       showShadow: false,
     }
   }
