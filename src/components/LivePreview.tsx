@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import type { ThemeConfig } from '../types';
 import { generateCss } from '../utils/themeGenerator';
-import { Languages, Pencil, Copy, Volume2, Trash, Trash2, Menu, ArrowLeft, ArrowRight, Bot, SendHorizontal } from 'lucide-react';
+import { Languages, Pencil, Copy, Volume2, Trash, Menu, ArrowLeft, ArrowRight, Bot, SendHorizontal } from 'lucide-react';
 
 interface Props {
   config: ThemeConfig;
