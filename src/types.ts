@@ -6,21 +6,35 @@ export interface ThemeConfig {
   userTextColor: string;
   borderRadius: number;
   avatarShape: 'circle' | 'square' | 'rounded';
+  hideCharAvatar?: boolean;
   hideUserAvatar: boolean;
   hideBubbleTail: boolean;
   showShadow: boolean;
+  hideModelName?: boolean;
+  hideModelNameWithHeart?: boolean;
+  layoutMode?: 'chat' | 'timeline';
+  showBorderBottom?: boolean;
+  showChatName: boolean;
+  showAuthorBadge?: boolean;
+  inputFontSize?: number;
+  chatFontSize?: number;
+  charTextAlign?: 'left' | 'center' | 'right';
+  userTextAlign?: 'left' | 'center' | 'right';
 }
 
 export interface Preset {
   id: string;
   name: string;
+  category: 'messenger' | 'community';
   config: ThemeConfig;
 }
 
 export const PRESETS: Preset[] = [
+  // ===================== 메신저 테마 =====================
   {
     id: 'kakao-default',
     name: '카카오톡',
+    category: 'messenger',
     config: {
       bgColor: '#b2c7d9',
       charBubbleColor: '#ffffff',
@@ -32,11 +46,14 @@ export const PRESETS: Preset[] = [
       hideUserAvatar: false,
       hideBubbleTail: false,
       showShadow: false,
+      layoutMode: 'chat',
+      showChatName: false,
     }
   },
   {
     id: 'imessage',
     name: '아이메세지',
+    category: 'messenger',
     config: {
       bgColor: '#ffffff',
       charBubbleColor: '#e5e5ea',
@@ -48,11 +65,14 @@ export const PRESETS: Preset[] = [
       hideUserAvatar: false,
       hideBubbleTail: false,
       showShadow: false,
+      layoutMode: 'chat',
+      showChatName: false,
     }
   },
   {
     id: 'insta-dm',
     name: '인스타 DM',
+    category: 'messenger',
     config: {
       bgColor: '#ffffff',
       charBubbleColor: '#EFEFEF',
@@ -64,11 +84,14 @@ export const PRESETS: Preset[] = [
       hideUserAvatar: false,
       hideBubbleTail: true,
       showShadow: false,
+      layoutMode: 'chat',
+      showChatName: false,
     }
   },
   {
     id: 'line',
     name: '라인 (LINE)',
+    category: 'messenger',
     config: {
       bgColor: '#7ca5cd',
       charBubbleColor: '#ffffff',
@@ -80,11 +103,14 @@ export const PRESETS: Preset[] = [
       hideUserAvatar: false,
       hideBubbleTail: false,
       showShadow: false,
+      layoutMode: 'chat',
+      showChatName: false,
     }
   },
   {
     id: 'between',
     name: '비트윈',
+    category: 'messenger',
     config: {
       bgColor: '#f4f4f5',
       charBubbleColor: '#f0f0f0',
@@ -96,11 +122,14 @@ export const PRESETS: Preset[] = [
       hideUserAvatar: false,
       hideBubbleTail: false,
       showShadow: false,
+      layoutMode: 'chat',
+      showChatName: false,
     }
   },
   {
     id: 'dark-mode',
     name: '다크 모드',
+    category: 'messenger',
     config: {
       bgColor: '#202124',
       charBubbleColor: '#3c4043',
@@ -112,11 +141,14 @@ export const PRESETS: Preset[] = [
       hideUserAvatar: false,
       hideBubbleTail: false,
       showShadow: false,
+      layoutMode: 'chat',
+      showChatName: false,
     }
   },
   {
     id: 'zeta',
     name: '제타 (Zeta)',
+    category: 'messenger',
     config: {
       bgColor: '#1c1c1e',
       charBubbleColor: '#2c2c2e',
@@ -125,9 +157,56 @@ export const PRESETS: Preset[] = [
       userTextColor: '#ffffff',
       borderRadius: 20,
       avatarShape: 'circle',
+      hideUserAvatar: false,
+      hideBubbleTail: true,
+      showShadow: false,
+      layoutMode: 'chat',
+      showChatName: false,
+    }
+  },
+  {
+    id: 'bubble',
+    name: '버블 (Bubble)',
+    category: 'messenger',
+    config: {
+      bgColor: '#f6f3fa',
+      charBubbleColor: '#ffffff',
+      userBubbleColor: '#e5d6fc',
+      charTextColor: '#222222',
+      userTextColor: '#2d1b4e',
+      borderRadius: 18,
+      avatarShape: 'circle',
+      hideUserAvatar: false,
+      hideBubbleTail: true,
+      showShadow: false,
+      layoutMode: 'chat',
+      showChatName: false,
+    }
+  },
+  
+  // ===================== 커뮤니티 / 컨셉 테마 =====================
+  {
+    id: 'ebook',
+    name: '📚 이북 리더기',
+    category: 'community',
+    config: {
+      bgColor: '#fdfdfc', // 깨끗한 A4 용지 같은 하얀색
+      charBubbleColor: 'transparent',
+      userBubbleColor: 'transparent',
+      charTextColor: '#2b2926', // 완전 검은색보다 눈이 편한 진한 차콜그레이
+      userTextColor: '#2b2926',
+      borderRadius: 0,
+      avatarShape: 'circle',
+      hideCharAvatar: true,
       hideUserAvatar: true,
       hideBubbleTail: true,
       showShadow: false,
+      layoutMode: 'timeline',
+      showBorderBottom: false,
+      showChatName: false,
+      chatFontSize: 13,
+      inputFontSize: 13,
+      userTextAlign: 'right', // 이북 리더기 모드에서 유저 대사는 우측 정렬 기본값
     }
   }
 ];

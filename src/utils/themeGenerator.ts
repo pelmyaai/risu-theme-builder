@@ -19,7 +19,7 @@ div:has(> .user-box-wrapper) {
     max-width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-end !important;
+    align-items: ${config.layoutMode === 'timeline' ? 'flex-start' : 'flex-end'} !important;
 }
 
 /* 3. 전체 래퍼 공통 설정 */
@@ -36,9 +36,14 @@ div:has(> .user-box-wrapper) {
     justify-content: flex-start;
 }
 .user-box-wrapper {
-    flex-direction: row-reverse;
+    flex-direction: ${config.layoutMode === 'timeline' ? 'row' : 'row-reverse'};
     justify-content: flex-start; 
 }
+${config.layoutMode === 'timeline' ? `
+.user-box-wrapper > div {
+    align-items: flex-start !important;
+}
+` : ''}
 
 /* 5. 말풍선 공통 설정 */
 .chat-box {
@@ -56,9 +61,9 @@ div:has(> .user-box-wrapper) {
     background-color: ${config.charBubbleColor} !important;
     border-radius: ${config.borderRadius}px !important;
     position: relative !important;
-    padding: 12px 16px !important;
+    padding: ${config.layoutMode === 'timeline' && (config.charBubbleColor === 'transparent' || config.charBubbleColor === 'rgba(0,0,0,0)') ? '4px 8px' : '12px 16px'} !important;
     max-width: 80% !important;
-    margin-left: 12px !important;
+    margin-left: ${config.layoutMode === 'timeline' ? '8px' : '12px'} !important;
 }
 .char-chat-box, .char-chat-box risutextbox, .char-chat-box p, .char-chat-box span, .char-chat-box div {
     color: ${config.charTextColor} !important;
@@ -73,14 +78,14 @@ div:has(> .user-box-wrapper) {
     border-color: transparent ${config.charBubbleColor} transparent transparent;
 }
 
-/* 5. 내(유저) 말풍선 설정 */
 .user-chat-box {
     background-color: ${config.userBubbleColor} !important;
     border-radius: ${config.borderRadius}px !important;
     position: relative !important;
-    padding: 12px 16px !important;
+    padding: ${config.layoutMode === 'timeline' && (config.userBubbleColor === 'transparent' || config.userBubbleColor === 'rgba(0,0,0,0)') ? '4px 8px' : '12px 16px'} !important;
     max-width: 80% !important;
-    margin-right: 12px !important;
+    margin-right: ${config.layoutMode === 'timeline' ? '0' : '12px'} !important;
+    margin-left: ${config.layoutMode === 'timeline' ? '8px' : '0'} !important;
 }
 .user-chat-box, .user-chat-box risutextbox, .user-chat-box p, .user-chat-box span, .user-chat-box div {
     color: ${config.userTextColor} !important;
@@ -106,7 +111,21 @@ risuicon img,
     overflow: hidden !important;
 }
 
-/* 7. 기타 옵션 (말풍선 꼬리, 유저 프사, 그림자) */
+/* 7. 기타 옵션 (말풍선 꼬리, 프사 숨기기, 그림자, 이름 표시) */
+${!config.showChatName ? `
+/* 이름 표시 숨기기 */
+.chat-name-area,
+.chat-name {
+    display: none !important;
+}` : ''}
+
+${config.hideCharAvatar ? `
+/* 캐릭터 프로필 사진 숨기기 */
+.char-profile-and-button,
+.char-image,
+.char-box-wrapper .profile-and-button {
+    display: none !important;
+}` : ''}
 ${config.hideUserAvatar ? `
 /* 유저 프로필 사진 숨기기 */
 .user-profile-and-button,
@@ -131,5 +150,112 @@ ${config.showShadow ? `
 .char-chat-box, .user-chat-box, .profile-container {
     box-shadow: none !important;
 }`}
+
+/* 8. 모델명(봇 아이콘) 가리기 및 하트 커스텀 */
+${(config.hideModelName || config.hideModelNameWithHeart) ? `
+/* 불필요한 UI 요소 숨김 */
+span.ml-1,
+button > svg.lucide-bot {
+  display: none !important;
+}
+` : ''}
+
+${config.hideModelNameWithHeart ? `
+/* 더보기 버튼 하트 커스텀 */
+button.text-sm.p-1::before {
+  content: "♡";
+  font-size: 20px !important;
+  color: ${config.charTextColor} !important;
+  line-height: 1 !important;
+  margin-right: 2px;
+  margin-left: 5px;
+  vertical-align: middle !important;
+  display: inline-block;
+}
+
+/* 입력창 내부 버튼에는 하트 금지 */
+div:has(> textarea.text-input-area) button.text-sm.p-1::before {
+  content: none !important;
+  display: none !important;
+}
+` : ''}
+
+/* 9. 커뮤니티 테마 - 하단 구분선 (트위터 스타일 등) */
+${config.showBorderBottom ? `
+.char-box-wrapper, .user-box-wrapper {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 16px !important;
+    border-radius: 0 !important;
+}
+` : ''}
+
+/* 채팅 내용 폰트 크기 조절 */
+.chat-box,
+.chat-box p,
+.chat-box span,
+.chat-box div {
+    font-size: ${config.chatFontSize || 15}px !important;
+}
+
+/* 텍스트 정렬 */
+.char-chat-box,
+.char-chat-box p,
+.char-chat-box span,
+.char-chat-box div {
+    text-align: ${config.charTextAlign || 'left'} !important;
+}
+
+.user-chat-box,
+.user-chat-box p,
+.user-chat-box span,
+.user-chat-box div {
+    text-align: ${config.userTextAlign || 'left'} !important;
+}
+
+${config.hideBubbleTail ? `
+/* 꼬리표 숨김을 위해 border-radius 강제 리셋 (선택사항) */
+.char-chat-box, .user-chat-box {
+    border-radius: ${config.borderRadius}px !important;
+}
+.char-chat-box::before, .user-chat-box::before,
+.char-chat-box::after, .user-chat-box::after {
+    display: none !important;
+    border: none !important;
+    background: none !important;
+    border-radius: 0 !important;
+}
+` : ''}
+
+/* 하단 채팅 입력창 글자 크기 조절 */
+textarea {
+    font-size: ${config.inputFontSize || 13}px !important;
+}
+
+/* ========================================= */
+/* 모바일 반응형 (화면이 좁아질 때) 최적화 */
+/* ========================================= */
+@media screen and (max-width: 768px) {
+    /* 모바일에서는 여백을 줄이고 말풍선이 화면을 더 넓게 쓰도록 조정 */
+    .char-box-wrapper, .user-box-wrapper {
+        padding: 4px !important;
+        margin: 2px !important;
+    }
+    
+    .chat-box {
+        max-width: 95% !important; /* 화면 가로폭을 최대한 활용 */
+    }
+    
+    /* 프로필 사진 크기 약간 축소 (옵션) */
+    .profile-container {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    /* 모바일에서 이름 영역 폰트 사이즈 조정 */
+    .chat-name {
+        font-size: 13px !important;
+    }
+}
 `;
 };

@@ -53,12 +53,16 @@ export const ThemeControls: React.FC<Props> = ({ config, onChange, onApplyPreset
     </div>
   </div>
 
-  <div style="display: flex; flex-direction: column; {{#if {{not_equal::{{role}}::char}} }}align-items: flex-end;{{/if}}">
+  <div class="chat-content-container" style="display: flex; flex-direction: column; width: 100%; {{#if {{not_equal::{{role}}::char}} }}align-items: flex-end;{{/if}}">
     
+    <div class="chat-name-area" style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; margin-left: 14px; margin-right: 14px;">
+      <span class="chat-name" style="font-size: 15px; font-weight: 800; color: var(--text-color, #0f1419);">{{#if {{equal::{{role}}::char}} }}{{char}}{{/if}}{{#if {{not_equal::{{role}}::char}} }}{{user}}{{/if}}</span>
+    </div>
+
     <div class="{{#if {{equal::{{role}}::char}} }}char{{/if}}{{#if {{not_equal::{{role}}::char}} }}user{{/if}}-chat-box chat-box">
       <risutextbox></risutextbox>
     </div>
-
+    
     <div class="character-button" style="display: flex; align-items: center; margin-left: 12px; margin-right: 12px; margin-top: 4px;">
       <risubuttons></risubuttons>
       {{#if {{equal::{{role}}::char}} }}
@@ -95,15 +99,25 @@ export const ThemeControls: React.FC<Props> = ({ config, onChange, onApplyPreset
       <h2>🎨 테마 컨트롤러</h2>
 
       <div className="control-group">
-        <h3>프리셋 (Presets)</h3>
+        <h3>채팅 앱 테마 (프리셋 1)</h3>
         <div className="preset-buttons">
-          {PRESETS.map(preset => (
+          {PRESETS.filter(p => p.category === 'messenger').map(preset => (
             <button key={preset.id} onClick={() => onApplyPreset(preset.id)} className="preset-btn">
               {preset.name}
             </button>
           ))}
         </div>
+
+        <h3 style={{ marginTop: '1.5rem' }}>커뮤니티 / 기타 테마 (프리셋 2)</h3>
+        <div className="preset-buttons">
+          {PRESETS.filter(p => p.category === 'community').map(preset => (
+            <button key={preset.id} onClick={() => onApplyPreset(preset.id)} className="preset-btn" style={{ background: '#f0f4f8' }}>
+              {preset.name}
+            </button>
+          ))}
+        </div>
       </div>
+
 
       <div className="control-group">
         <h3>색상 설정</h3>
@@ -152,8 +166,80 @@ export const ThemeControls: React.FC<Props> = ({ config, onChange, onApplyPreset
             onChange={(e) => handleChange('borderRadius', parseInt(e.target.value))} 
           />
         </label>
+        
+        <h3 style={{ marginTop: '2rem' }}>크기 및 정렬 설정</h3>
+        
+        <div className="style-option-group">
+          <label className="style-option-label">상대방 대사 정렬</label>
+          <select 
+            value={config.charTextAlign || 'left'} 
+            onChange={(e) => handleChange('charTextAlign', e.target.value)}
+            className="style-select"
+            style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #cbd5e1' }}
+          >
+            <option value="left">왼쪽 정렬</option>
+            <option value="center">가운데 정렬</option>
+            <option value="right">오른쪽 정렬</option>
+          </select>
+        </div>
+
+        <div className="style-option-group">
+          <label className="style-option-label">내 대사 정렬</label>
+          <select 
+            value={config.userTextAlign || 'left'} 
+            onChange={(e) => handleChange('userTextAlign', e.target.value)}
+            className="style-select"
+            style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #cbd5e1' }}
+          >
+            <option value="left">왼쪽 정렬</option>
+            <option value="center">가운데 정렬</option>
+            <option value="right">오른쪽 정렬</option>
+          </select>
+        </div>
+
+        <div className="style-option-group">
+          <label className="style-option-label">채팅 글자 크기 (기본: 15px)</label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <input 
+              type="range" 
+              min="12" 
+              max="24" 
+              value={config.chatFontSize || 15} 
+              onChange={(e) => handleChange('chatFontSize', parseInt(e.target.value))}
+              style={{ flex: 1 }}
+            />
+            <span style={{ minWidth: '40px', fontSize: '14px' }}>{config.chatFontSize || 15}px</span>
+          </div>
+        </div>
+
+        <div className="style-option-group">
+          <label className="style-option-label">입력창 글자 크기 (기본: 13px)</label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <input 
+              type="range" 
+              min="10" 
+              max="24" 
+              value={config.inputFontSize || 13} 
+              onChange={(e) => handleChange('inputFontSize', parseInt(e.target.value))}
+              style={{ flex: 1 }}
+            />
+            <span style={{ minWidth: '40px', fontSize: '14px' }}>{config.inputFontSize || 13}px</span>
+          </div>
+        </div>
 
         <div className="style-options">
+          <label className="style-option-label">
+            <span>레이아웃 모드</span>
+            <select 
+              value={config.layoutMode || 'chat'} 
+              onChange={(e) => handleChange('layoutMode', e.target.value)}
+              className="style-select"
+            >
+              <option value="chat">채팅형 (우측 유저)</option>
+              <option value="timeline">타임라인형 (모두 좌측)</option>
+            </select>
+          </label>
+
           <label className="style-option-label">
             <span>프로필 사진 모양</span>
             <select 
@@ -170,10 +256,37 @@ export const ThemeControls: React.FC<Props> = ({ config, onChange, onApplyPreset
           <label className="style-option-label checkbox-label">
             <input 
               type="checkbox" 
+              checked={config.showBorderBottom || false} 
+              onChange={(e) => handleChange('showBorderBottom', e.target.checked)}
+            />
+            <span>메시지 하단 테두리 선 표시 (트위터 스타일)</span>
+          </label>
+
+          <label className="style-option-label checkbox-label">
+            <input 
+              type="checkbox" 
+              checked={config.hideCharAvatar || false} 
+              onChange={(e) => handleChange('hideCharAvatar', e.target.checked)}
+            />
+            <span>상대방(캐릭터) 프로필 사진 숨기기</span>
+          </label>
+
+          <label className="style-option-label checkbox-label">
+            <input 
+              type="checkbox" 
               checked={config.hideUserAvatar} 
               onChange={(e) => handleChange('hideUserAvatar', e.target.checked)}
             />
             <span>내(유저) 프로필 사진 숨기기</span>
+          </label>
+
+          <label className="style-option-label checkbox-label">
+            <input 
+              type="checkbox" 
+              checked={config.showChatName} 
+              onChange={(e) => handleChange('showChatName', e.target.checked)}
+            />
+            <span>이름(닉네임) 표시하기</span>
           </label>
 
           <label className="style-option-label checkbox-label">
@@ -192,6 +305,24 @@ export const ThemeControls: React.FC<Props> = ({ config, onChange, onApplyPreset
               onChange={(e) => handleChange('showShadow', e.target.checked)}
             />
             <span>그림자 효과 (입체감) 넣기</span>
+          </label>
+
+          <label className="style-option-label checkbox-label">
+            <input 
+              type="checkbox" 
+              checked={config.hideModelName || false} 
+              onChange={(e) => handleChange('hideModelName', e.target.checked)}
+            />
+            <span>모델명 숨기기</span>
+          </label>
+
+          <label className="style-option-label checkbox-label">
+            <input 
+              type="checkbox" 
+              checked={config.hideModelNameWithHeart || false} 
+              onChange={(e) => handleChange('hideModelNameWithHeart', e.target.checked)}
+            />
+            <span>모델명 하트(♡)로 가리기</span>
           </label>
         </div>
       </div>
