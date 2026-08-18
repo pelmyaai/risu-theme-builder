@@ -20,6 +20,13 @@ export interface ThemeConfig {
   chatFontSize?: number;
   charTextAlign?: 'left' | 'center' | 'right';
   userTextAlign?: 'left' | 'center' | 'right';
+  
+  // 쌍따옴표 대사 설정
+  quoteStyle?: 'none' | 'highlighter' | 'box';
+  quoteColor?: string; // 형광펜/네모칸 배경색
+  quoteBorderColor?: string; // 네모칸 좌측 선 색상
+  quoteTextColor?: string; // 네모칸 글자색
+  italicizeActions?: boolean; // 행동 지문 기울이기
 }
 
 export interface Preset {
@@ -207,6 +214,10 @@ export const PRESETS: Preset[] = [
       chatFontSize: 13,
       inputFontSize: 13,
       userTextAlign: 'right', // 이북 리더기 모드에서 유저 대사는 우측 정렬 기본값
+      quoteStyle: 'none',
+      quoteColor: '#e8f4f3',
+      quoteBorderColor: '#72d9d0',
+      quoteTextColor: '#333333',
     }
   }
 ];

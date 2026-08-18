@@ -213,6 +213,40 @@ ${config.showBorderBottom ? `
     text-align: ${config.userTextAlign || 'left'} !important;
 }
 
+${config.quoteStyle === 'highlighter' ? `
+/* 쌍따옴표 대사 형광펜 효과 */
+mark[risu-mark="quote2"] {
+    background: linear-gradient(to top, ${config.quoteColor || '#fff176'} 50%, transparent 50%) !important;
+    border-radius: 4px !important;
+    padding: 0px 4px !important;
+    color: inherit !important;
+}
+` : config.quoteStyle === 'box' ? `
+/* 쌍따옴표 대사 네모 박스 효과 */
+mark[risu-mark="quote2"] {
+    display: block !important;
+    border-left: 4px solid ${config.quoteBorderColor || '#72d9d0'} !important;
+    background: ${config.quoteColor || '#e8f4f3'} !important;
+    padding: 10px 14px !important;
+    margin: 6px 0 !important;
+    border-radius: 0px 6px 6px 0px !important;
+    line-height: 1.6 !important;
+    color: ${config.quoteTextColor || '#333333'} !important;
+}
+` : ''}
+
+${config.italicizeActions ? `
+/* 따옴표 밖 행동 지문 기울이기 (이탤릭체) */
+.char-chat-box p, .user-chat-box p {
+    font-style: italic !important;
+}
+.char-chat-box mark[risu-mark="quote2"], .char-chat-box mark[risu-mark="quote1"],
+.user-chat-box mark[risu-mark="quote2"], .user-chat-box mark[risu-mark="quote1"],
+.char-chat-box span, .user-chat-box span {
+    font-style: normal !important;
+}
+` : ''}
+
 ${config.hideBubbleTail ? `
 /* 꼬리표 숨김을 위해 border-radius 강제 리셋 (선택사항) */
 .char-chat-box, .user-chat-box {

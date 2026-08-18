@@ -227,7 +227,62 @@ export const ThemeControls: React.FC<Props> = ({ config, onChange, onApplyPreset
           </div>
         </div>
 
-        <div className="style-options">
+        <h3 style={{ marginTop: '2rem' }}>대사(쌍따옴표) 스타일 설정</h3>
+        <p className="helper-text" style={{ marginBottom: '1rem' }}>미리보기에선 이탤릭체가 적용되지 않습니다.</p>
+        
+        <div className="style-option-group">
+          <label className="style-option-label checkbox-label">
+            <input 
+              type="checkbox" 
+              checked={config.italicizeActions || false} 
+              onChange={(e) => handleChange('italicizeActions', e.target.checked)} 
+            />
+            <span>따옴표 밖 행동 지문 기울이기 (이탤릭체)</span>
+          </label>
+        </div>
+
+        <div className="style-option-group">
+          <label className="style-option-label">대사 스타일</label>
+          <select 
+            value={config.quoteStyle || 'none'} 
+            onChange={(e) => handleChange('quoteStyle', e.target.value)}
+            className="style-select"
+            style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #cbd5e1' }}
+          >
+            <option value="none">적용 안 함 (기본)</option>
+            <option value="highlighter">형광펜 효과</option>
+            <option value="box">텍스트 박스 효과</option>
+          </select>
+        </div>
+
+        {config.quoteStyle !== 'none' && (
+          <div className="style-option-group">
+            <ColorInput 
+              label={config.quoteStyle === 'box' ? "박스 배경 색상" : "형광펜 색상"}
+              value={config.quoteColor || (config.quoteStyle === 'box' ? '#e8f4f3' : '#fff176')} 
+              onChange={(val) => handleChange('quoteColor', val)} 
+              quickColors={['#fff176', '#e8f4f3', '#ffe4e1', '#e6e6fa', '#f0f8ff', '#f5f5dc']} 
+            />
+            {config.quoteStyle === 'box' && (
+              <>
+                <ColorInput 
+                  label="박스 좌측 선 색상" 
+                  value={config.quoteBorderColor || '#72d9d0'} 
+                  onChange={(val) => handleChange('quoteBorderColor', val)} 
+                  quickColors={['#72d9d0', '#ffb6c1', '#dda0dd', '#87cefa', '#98fb98', '#ffd700']} 
+                />
+                <ColorInput 
+                  label="박스 글자 색상" 
+                  value={config.quoteTextColor || '#333333'} 
+                  onChange={(val) => handleChange('quoteTextColor', val)} 
+                  quickColors={['#333333', '#111111', '#555555', '#777777', '#000000', '#ffffff']} 
+                />
+              </>
+            )}
+          </div>
+        )}
+
+        <div className="style-options" style={{ marginTop: '2rem' }}>
           <label className="style-option-label">
             <span>레이아웃 모드</span>
             <select 

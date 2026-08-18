@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import type { ThemeConfig } from '../types';
 import { generateCss } from '../utils/themeGenerator';
-import { Languages, Pencil, Copy, Volume2, Trash, Menu, ArrowLeft, ArrowRight, Bot, SendHorizontal } from 'lucide-react';
+import { Languages, Pencil, Copy, Volume2, Trash, Trash2, Menu, ArrowLeft, ArrowRight, Bot, SendHorizontal } from 'lucide-react';
 
 interface Props {
   config: ThemeConfig;
@@ -44,8 +44,12 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
                   캐릭터
                 </span>
               </div>
-              <div className="char-chat-box chat-box" style={{ fontSize: `${config.chatFontSize || 15}px`, textAlign: config.charTextAlign || 'left' }}>
-                안녕! 만나서 반가워. 어떤 테마를 만들고 싶어?
+              <div className="char-chat-box chat-box" style={{ 
+                fontSize: `${config.chatFontSize || 15}px`, 
+                textAlign: config.charTextAlign || 'left',
+                fontStyle: config.italicizeActions ? 'italic' : 'normal'
+              }}>
+                안녕! 만나서 반가워. <mark risu-mark="quote2" style={{ fontStyle: config.italicizeActions ? 'normal' : 'inherit' }}>"어떤 테마를 만들고 싶어?"</mark>
               </div>
               
               <div className="character-button" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: '12px', marginTop: '8px', color: '#64748b' }}>
@@ -80,8 +84,12 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
                   유저
                 </span>
               </div>
-              <div className="user-chat-box chat-box" style={{ fontSize: `${config.chatFontSize || 15}px`, textAlign: config.userTextAlign || 'left' }}>
-                나만의 예쁜 리수 테마를<br/>만들어보고 싶어!
+              <div className="user-chat-box chat-box" style={{ 
+                fontSize: `${config.chatFontSize || 15}px`, 
+                textAlign: config.userTextAlign || 'left',
+                fontStyle: config.italicizeActions ? 'italic' : 'normal'
+              }}>
+                <mark risu-mark="quote2" style={{ fontStyle: config.italicizeActions ? 'normal' : 'inherit' }}>"나만의 예쁜 리수 테마를 만들어보고 싶어!"</mark>
               </div>
             </div>
           </div>
@@ -101,8 +109,26 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
                   캐릭터
                 </span>
               </div>
-              <div className="char-chat-box chat-box" style={{ fontSize: `${config.chatFontSize || 15}px`, textAlign: config.charTextAlign || 'left' }}>
+              <div className="char-chat-box chat-box" style={{ 
+                fontSize: `${config.chatFontSize || 15}px`, 
+                textAlign: config.charTextAlign || 'left',
+                fontStyle: config.italicizeActions ? 'italic' : 'normal'
+              }}>
                 왼쪽에서 색상과 말풍선 둥글기를 조절해봐.<br/>실시간으로 반영될 거야!
+              </div>
+
+              <div className="character-button" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: '12px', marginTop: '8px', color: '#64748b' }}>
+                <Languages size={18} />
+                <Pencil size={18} />
+                <Copy size={18} />
+                <Volume2 size={18} />
+                <Trash size={18} />
+                <Menu size={18} />
+                <ArrowLeft size={18} />
+                <ArrowRight size={18} />
+                <span style={{ fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <Bot size={18} /> Gemini Pro 3.1 Preview
+                </span>
               </div>
             </div>
           </div>

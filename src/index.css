@@ -21,8 +21,17 @@ body {
   color: #0f172a;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 h1, h2, h3, p {
   margin: 0;
+}
+
+mark {
+  background: transparent;
+  color: inherit;
 }
 
 /* App Layout */
@@ -60,8 +69,22 @@ h1, h2, h3, p {
 }
 
 @media (max-width: 860px) {
+  .app-container {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+  
   .main-content {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .controls-panel, .preview-panel {
+    padding: 1rem;
   }
 }
 
