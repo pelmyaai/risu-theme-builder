@@ -213,7 +213,13 @@ ${config.showBorderBottom ? `
     text-align: ${config.userTextAlign || 'left'} !important;
 }
 
-${config.quoteStyle === 'highlighter' ? `
+${config.quoteStyle === 'textColor' ? `
+/* 쌍따옴표 대사 글자색 변경 */
+mark[risu-mark="quote2"] {
+    background: transparent !important;
+    color: ${config.quoteTextColor || '#ffb6c1'} !important;
+}
+` : config.quoteStyle === 'highlighter' ? `
 /* 쌍따옴표 대사 형광펜 효과 */
 mark[risu-mark="quote2"] {
     background: linear-gradient(to top, ${config.quoteColor || '#fff176'} 50%, transparent 50%) !important;

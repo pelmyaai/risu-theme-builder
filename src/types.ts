@@ -22,7 +22,7 @@ export interface ThemeConfig {
   userTextAlign?: 'left' | 'center' | 'right';
   
   // 쌍따옴표 대사 설정
-  quoteStyle?: 'none' | 'highlighter' | 'box';
+  quoteStyle?: 'none' | 'textColor' | 'highlighter' | 'box';
   quoteColor?: string; // 형광펜/네모칸 배경색
   quoteBorderColor?: string; // 네모칸 좌측 선 색상
   quoteTextColor?: string; // 네모칸 글자색
