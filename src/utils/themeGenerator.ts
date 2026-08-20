@@ -133,16 +133,21 @@ ${config.layoutMode === 'timeline' ? `
 
 /* 6. 프로필 사진 설정 */
 .profile-container, 
-.profile-container *, 
+.profile-container img, 
+.profile-container div,
 risuicon, 
-risuicon *, 
+risuicon img, 
+risuicon div,
 .char-image, 
-.char-image *,
+.char-image img,
+.char-image div,
 .user-image,
-.user-image * {
+.user-image img,
+.user-image div {
     width: ${config.avatarSize || 48}px !important;
     height: ${config.avatarSize || 48}px !important;
     min-width: ${config.avatarSize || 48}px !important;
+    min-height: ${config.avatarSize || 48}px !important;
     border-radius: ${config.avatarShape === 'square' ? '6px' : config.avatarShape === 'rounded' ? '16px' : '50%'} !important;
     overflow: hidden !important;
     object-fit: cover !important;
