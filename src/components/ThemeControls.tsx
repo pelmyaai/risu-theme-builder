@@ -327,15 +327,12 @@ export const ThemeControls: React.FC<Props> = ({ config, onChange, onApplyPreset
               <input 
                 type="range" 
                 min="30" 
-                max="200" 
+                max="80" 
                 value={config.avatarSize || 48} 
                 onChange={(e) => handleChange('avatarSize', parseInt(e.target.value))}
                 style={{ flex: 1 }}
               />
               <span style={{ minWidth: '40px', fontSize: '14px' }}>{config.avatarSize || 48}px</span>
-            </div>
-            <div className="helper-text" style={{ marginTop: '4px', fontSize: '12px', color: '#ef4444' }}>
-              ⚠️ 단, 폰 화면 가로가 좁은데 190px까지 키우면 글씨가 너무 찌그러질 수 있으니 폰에서는 적당한 크기(48~60px 정도)를 권장합니다.
             </div>
           </label>
 
