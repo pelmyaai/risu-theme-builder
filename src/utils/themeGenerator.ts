@@ -40,24 +40,7 @@ div:has(> .user-box-wrapper) {
     align-items: flex-start;
 }
 
-/* 11. 모바일 반응형 처리 */
-@media (max-width: 600px) {
-    ${config.avatarSize > 80 ? `
-    /* 모바일에서 프사가 너무 크면 레이아웃이 깨지므로 위아래로 쌓이도록(수직 배치) 변경 */
-    .char-box-wrapper, .user-box-wrapper {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-    .char-profile-and-button, .user-profile-and-button {
-        float: none !important;
-        margin: 0 auto 12px auto !important;
-    }
-    .chat-content-container {
-        width: 100% !important;
-    }
-    ` : ''}
-}
+/* Removed broken mobile responsive block */
 
 /* 4. 방향 설정 */
 .char-box-wrapper {

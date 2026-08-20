@@ -34,7 +34,7 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <div className="char-box-wrapper">
             <div className="char-profile-and-button profile-and-button">
-              <div className="char-image profile-container" style={{ backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+              <div className="char-image profile-container" style={{ backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: `${Math.max(24, (config.avatarSize || 48) * 0.6)}px` }}>
                 🐿️
               </div>
             </div>
@@ -74,7 +74,7 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: config.layoutMode === 'timeline' ? 'flex-start' : 'flex-end' }}>
           <div className="user-box-wrapper">
             <div className="user-profile-and-button profile-and-button">
-              <div className="user-image profile-container" style={{ backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+              <div className="user-image profile-container" style={{ backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: `${Math.max(24, (config.avatarSize || 48) * 0.6)}px` }}>
                 👤
               </div>
             </div>
@@ -99,7 +99,7 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <div className="char-box-wrapper">
             <div className="char-profile-and-button profile-and-button">
-              <div className="char-image profile-container" style={{ backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+              <div className="char-image profile-container" style={{ backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: `${Math.max(24, (config.avatarSize || 48) * 0.6)}px` }}>
                 🐿️
               </div>
             </div>
