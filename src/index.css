@@ -326,4 +326,5 @@ mark {
   padding: 1rem;
   overflow-y: auto;
   border: 1px solid #e2e8f0;
+  transform: translateZ(0); /* Trap position: fixed inside this container */
 }
