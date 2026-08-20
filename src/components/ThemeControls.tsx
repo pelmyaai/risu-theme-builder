@@ -321,6 +321,21 @@ export const ThemeControls: React.FC<Props> = ({ config, onChange, onApplyPreset
             </select>
           </label>
 
+          <label className="style-option-label" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <span>프로필 사진 크기 (기본: 48px)</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <input 
+                type="range" 
+                min="30" 
+                max="200" 
+                value={config.avatarSize || 48} 
+                onChange={(e) => handleChange('avatarSize', parseInt(e.target.value))}
+                style={{ flex: 1 }}
+              />
+              <span style={{ minWidth: '40px', fontSize: '14px' }}>{config.avatarSize || 48}px</span>
+            </div>
+          </label>
+
           <label className="style-option-label checkbox-label">
             <input 
               type="checkbox" 

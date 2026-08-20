@@ -6,7 +6,17 @@ export const generateCss = (config: ThemeConfig) => {
     background-color: ${config.bgColor} !important;
 }
 
-/* 2. RisuAI의 보이지 않는 껍데기를 양끝으로 쫙 늘리기! */
+/* 2. RisuAI의 보이지 않는 껍데기(여백) 강제 초기화 및 양끝으로 쫙 늘리기! */
+.mes, .mes_text, .mes_block, .chattext {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.mes_avatar {
+    display: none !important; /* Risu 기본 아바타 숨김 (우리가 만든 커스텀 아바타 사용) */
+}
+
 div:has(> .char-box-wrapper) {
     width: 100% !important;
     max-width: 100% !important;
@@ -40,6 +50,25 @@ div:has(> .user-box-wrapper) {
     justify-content: flex-start; 
 }
 ${config.layoutMode === 'timeline' ? `
+/* 타임라인(이북) 모드에서는 프로필 사진이 텍스트와 어우러지도록 float 레이아웃 사용 */
+.char-box-wrapper, .user-box-wrapper {
+    display: block !important;
+}
+.char-profile-and-button, .user-profile-and-button {
+    float: left !important;
+    margin-right: 12px !important;
+    margin-bottom: 4px !important;
+    margin-top: 4px !important;
+}
+.chat-content-container {
+    display: block !important;
+    width: auto !important;
+}
+.char-box-wrapper::after, .user-box-wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+}
 .user-box-wrapper > div {
     align-items: flex-start !important;
 }
@@ -61,9 +90,9 @@ ${config.layoutMode === 'timeline' ? `
     background-color: ${config.charBubbleColor} !important;
     border-radius: ${config.borderRadius}px !important;
     position: relative !important;
-    padding: ${config.layoutMode === 'timeline' && (config.charBubbleColor === 'transparent' || config.charBubbleColor === 'rgba(0,0,0,0)') ? '4px 8px' : '12px 16px'} !important;
-    max-width: 80% !important;
-    margin-left: ${config.layoutMode === 'timeline' ? '8px' : '12px'} !important;
+    padding: ${config.layoutMode === 'timeline' ? '4px 8px' : '12px 16px'} !important;
+    max-width: ${config.layoutMode === 'timeline' ? '100%' : '80%'} !important;
+    margin-left: ${config.layoutMode === 'timeline' ? '0' : '12px'} !important;
 }
 .char-chat-box, .char-chat-box risutextbox, .char-chat-box p, .char-chat-box span, .char-chat-box div {
     color: ${config.charTextColor} !important;
@@ -82,10 +111,10 @@ ${config.layoutMode === 'timeline' ? `
     background-color: ${config.userBubbleColor} !important;
     border-radius: ${config.borderRadius}px !important;
     position: relative !important;
-    padding: ${config.layoutMode === 'timeline' && (config.userBubbleColor === 'transparent' || config.userBubbleColor === 'rgba(0,0,0,0)') ? '4px 8px' : '12px 16px'} !important;
-    max-width: 80% !important;
+    padding: ${config.layoutMode === 'timeline' ? '4px 8px' : '12px 16px'} !important;
+    max-width: ${config.layoutMode === 'timeline' ? '100%' : '80%'} !important;
     margin-right: ${config.layoutMode === 'timeline' ? '0' : '12px'} !important;
-    margin-left: ${config.layoutMode === 'timeline' ? '8px' : '0'} !important;
+    margin-left: ${config.layoutMode === 'timeline' ? '0' : '0'} !important;
 }
 .user-chat-box, .user-chat-box risutextbox, .user-chat-box p, .user-chat-box span, .user-chat-box div {
     color: ${config.userTextColor} !important;
@@ -102,13 +131,20 @@ ${config.layoutMode === 'timeline' ? `
 
 /* 6. 프로필 사진 설정 */
 .profile-container, 
-.profile-container img, 
+.profile-container *, 
 risuicon, 
-risuicon img, 
+risuicon *, 
 .char-image, 
-.user-image {
+.char-image *,
+.user-image,
+.user-image * {
+    width: ${config.avatarSize || 48}px !important;
+    height: ${config.avatarSize || 48}px !important;
+    min-width: ${config.avatarSize || 48}px !important;
     border-radius: ${config.avatarShape === 'square' ? '6px' : config.avatarShape === 'rounded' ? '16px' : '50%'} !important;
     overflow: hidden !important;
+    object-fit: cover !important;
+    aspect-ratio: 1 / 1 !important;
 }
 
 /* 7. 기타 옵션 (말풍선 꼬리, 프사 숨기기, 그림자, 이름 표시) */
@@ -246,8 +282,9 @@ ${config.italicizeActions ? `
 .char-chat-box p, .user-chat-box p {
     font-style: italic !important;
 }
-.char-chat-box mark[risu-mark="quote2"], .char-chat-box mark[risu-mark="quote1"],
-.user-chat-box mark[risu-mark="quote2"], .user-chat-box mark[risu-mark="quote1"],
+.char-chat-box mark, .user-chat-box mark,
+mark[risu-mark="quote2"], mark[risu-mark="quote1"],
+.chattext mark[risu-mark="quote2"], .chattext mark[risu-mark="quote1"],
 .char-chat-box span, .user-chat-box span {
     font-style: normal !important;
 }

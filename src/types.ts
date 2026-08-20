@@ -12,6 +12,7 @@ export interface ThemeConfig {
   showShadow: boolean;
   hideModelName?: boolean;
   hideModelNameWithHeart?: boolean;
+  avatarSize?: number; // 프로필 사진 크기 (기본: 48)
   layoutMode?: 'chat' | 'timeline';
   showBorderBottom?: boolean;
   showChatName: boolean;
@@ -213,11 +214,12 @@ export const PRESETS: Preset[] = [
       showChatName: false,
       chatFontSize: 13,
       inputFontSize: 13,
-      userTextAlign: 'right', // 이북 리더기 모드에서 유저 대사는 우측 정렬 기본값
-      quoteStyle: 'none',
+      userTextAlign: 'left', // 이북 리더기 모드에서 유저 대사도 자연스럽게 왼쪽 정렬
+      italicizeActions: false, // 한국어 소설은 이탤릭체를 쓰지 않으므로 끔
+      quoteStyle: 'textColor',
       quoteColor: '#e8f4f3',
       quoteBorderColor: '#72d9d0',
-      quoteTextColor: '#333333',
+      quoteTextColor: '#2b2926',
     }
   }
 ];

@@ -27,14 +27,14 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
 
   return (
     <div className="preview-panel">
-      <h2>👀 실시간 미리보기</h2>
+      <h2>📱 실시간 미리보기</h2>
       <div className="preview-container default-chat-screen">
         
         {/* 상대방(캐릭터) 메시지 샘플 */}
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <div className="char-box-wrapper">
             <div className="char-profile-and-button profile-and-button">
-              <div className="char-image profile-container" style={{ width: 40, height: 40, backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+              <div className="char-image profile-container" style={{ backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
                 🐿️
               </div>
             </div>
@@ -49,7 +49,7 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
                 textAlign: config.charTextAlign || 'left',
                 fontStyle: config.italicizeActions ? 'italic' : 'normal'
               }}>
-                안녕! 만나서 반가워. <mark risu-mark="quote2" style={{ fontStyle: config.italicizeActions ? 'normal' : 'inherit' }}>"어떤 테마를 만들고 싶어?"</mark>
+                안녕! 만나서 반가워! <mark risu-mark="quote2" style={{ fontStyle: config.italicizeActions ? 'normal' : 'inherit' }}>"어떤 테마를 만들고 싶어?"</mark>
               </div>
               
               <div className="character-button" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: '12px', marginTop: '8px', color: '#64748b' }}>
@@ -74,7 +74,7 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: config.layoutMode === 'timeline' ? 'flex-start' : 'flex-end' }}>
           <div className="user-box-wrapper">
             <div className="user-profile-and-button profile-and-button">
-              <div className="user-image profile-container" style={{ width: 40, height: 40, backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+              <div className="user-image profile-container" style={{ backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
                 👤
               </div>
             </div>
@@ -99,7 +99,7 @@ export const LivePreview: React.FC<Props> = ({ config }) => {
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <div className="char-box-wrapper">
             <div className="char-profile-and-button profile-and-button">
-              <div className="char-image profile-container" style={{ width: 40, height: 40, backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+              <div className="char-image profile-container" style={{ backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
                 🐿️
               </div>
             </div>
