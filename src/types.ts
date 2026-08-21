@@ -178,7 +178,7 @@ export const PRESETS: Preset[] = [
   {
     id: 'ebook',
     name: '📚 이북 리더기',
-    category: 'community',
+    category: 'messenger',
     config: {
       bgColor: '#fdfdfc',
       charBubbleColor: 'transparent',

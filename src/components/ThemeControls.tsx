@@ -99,19 +99,10 @@ export const ThemeControls: React.FC<Props> = ({ config, onChange, onApplyPreset
       <h2>🎨 테마 컨트롤러</h2>
 
       <div className="control-group">
-        <h3>채팅 앱 테마 (프리셋 1)</h3>
+        <h3>추천 테마 (프리셋)</h3>
         <div className="preset-buttons">
           {PRESETS.filter(p => p.category === 'messenger').map(preset => (
             <button key={preset.id} onClick={() => onApplyPreset(preset.id)} className="preset-btn">
-              {preset.name}
-            </button>
-          ))}
-        </div>
-
-        <h3 style={{ marginTop: '1.5rem' }}>커뮤니티 / 기타 테마 (프리셋 2)</h3>
-        <div className="preset-buttons">
-          {PRESETS.filter(p => p.category === 'community').map(preset => (
-            <button key={preset.id} onClick={() => onApplyPreset(preset.id)} className="preset-btn" style={{ background: '#f0f4f8' }}>
               {preset.name}
             </button>
           ))}
