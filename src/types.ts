@@ -153,25 +153,7 @@ export const PRESETS: Preset[] = [
       showChatName: false,
     }
   },
-  {
-    id: 'zeta',
-    name: '제타 (Zeta)',
-    category: 'messenger',
-    config: {
-      bgColor: '#1c1c1e',
-      charBubbleColor: '#2c2c2e',
-      userBubbleColor: '#8b54ff',
-      charTextColor: '#ffffff',
-      userTextColor: '#ffffff',
-      borderRadius: 20,
-      avatarShape: 'circle',
-      hideUserAvatar: false,
-      hideBubbleTail: true,
-      showShadow: false,
-      layoutMode: 'chat',
-      showChatName: false,
-    }
-  },
+
   {
     id: 'bubble',
     name: '버블 (Bubble)',
@@ -198,10 +180,10 @@ export const PRESETS: Preset[] = [
     name: '📚 이북 리더기',
     category: 'community',
     config: {
-      bgColor: '#fdfdfc', // 깨끗한 A4 용지 같은 하얀색
+      bgColor: '#fdfdfc',
       charBubbleColor: 'transparent',
       userBubbleColor: 'transparent',
-      charTextColor: '#2b2926', // 완전 검은색보다 눈이 편한 진한 차콜그레이
+      charTextColor: '#2b2926',
       userTextColor: '#2b2926',
       borderRadius: 0,
       avatarShape: 'circle',
@@ -214,8 +196,8 @@ export const PRESETS: Preset[] = [
       showChatName: false,
       chatFontSize: 13,
       inputFontSize: 13,
-      userTextAlign: 'left', // 이북 리더기 모드에서 유저 대사도 자연스럽게 왼쪽 정렬
-      italicizeActions: false, // 한국어 소설은 이탤릭체를 쓰지 않으므로 끔
+      userTextAlign: 'left',
+      italicizeActions: false,
       quoteStyle: 'textColor',
       quoteColor: '#e8f4f3',
       quoteBorderColor: '#72d9d0',
